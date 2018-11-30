@@ -1,4 +1,4 @@
-/* .card-box {
+.card-box {
     min-height: 500px;
     display: flex;
     flex-direction: column;
@@ -26,4 +26,4 @@
     margin-left: auto;
     margin-right: auto;
     font-weight: bold;
-} */
+}

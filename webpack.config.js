@@ -23,7 +23,22 @@ output: {
             loader: "html-loader"
           }
         ]
-      }
+      },
+      {
+        test: /\.css$/,
+        use: [ 'style-loader', 'css-loader' ]
+      },
+      {
+        test: /\.(jpe?g|png|gif|svg|ico)$/i,
+        use: [
+            {
+                loader: "file-loader",
+                options: {
+                    outputPath: "assets/"
+                }
+            }
+        ]
+    }
     ]
   },
   plugins: [

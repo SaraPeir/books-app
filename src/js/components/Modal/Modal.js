@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import './Modal.css';
+import './Modal.css';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 class ModalBS extends Component {

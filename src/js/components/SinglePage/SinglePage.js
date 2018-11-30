@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import './SinglePage.css';
+import './SinglePage.css';
 import BookCard from '../BookCard/BookCard';
 import ModalBS from '../Modal/Modal';
 
@@ -45,9 +45,6 @@ class SinglePage extends Component {
         // }
     }
 
-    renderCardsInDelay(){
-      setInterval(this.renderCards.bind(this), 3000)
-    }
 
   render() {
     return (
