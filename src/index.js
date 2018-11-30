@@ -2,5 +2,9 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import App from "./js/App";
 
-const wrapper = document.getElementById("create-article-form");
-wrapper ? ReactDOM.render(<App />, wrapper) : false;
+import { BrowserRouter } from 'react-router-dom';
+
+ReactDOM.render(
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>, document.getElementById('root'));
