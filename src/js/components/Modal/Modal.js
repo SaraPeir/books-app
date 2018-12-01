@@ -47,26 +47,3 @@ export default ModalBS;
 
 
 
-
-// import React, { Component } from 'react';
-// import './Modal.css';
-
-// class Modal extends Component {
-
-//   render() {
-//     return (
-//       <div className={`${this.props.isHidden} modal-box`}>
-//       <div onClick ={this.onClose}>X</div>
-//       <div className="modal-card">
-//       <p id="strong">{this.props.title}</p>
-//       <p>{this.props.author}</p>
-//       <p id="tag">{this.props.type}</p>
-//       </div>
-//       </div>
-//     );
-//   }
-// }
-
-// export default Modal;
-
-// <img src={this.props.url} alt={`${this.props.title} image`} />

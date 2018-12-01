@@ -4,10 +4,6 @@ import BookCard from '../BookCard/BookCard';
 import ModalBS from '../Modal/Modal';
 
 class SinglePage extends Component {
-
-  constructor() {
-    super();
-  }
   
     renderCards(){
       const {spArray} = this.props;
@@ -38,18 +34,14 @@ class SinglePage extends Component {
             console.log('filtered', mapped);
       }
         return mapped;
-        }
-        // else {
-        //   console.log('spArray no formado', spArray);
-        //   return <p>No results </p>
-        // }
+      }
     }
 
 
   render() {
     return (
       <div>
-        <div className="searchbox-container">
+        <div className={`${this.props.backgroundImage} searchbox-container`}>
           <p id="page-title">{this.props.title}</p>
           <div className="search-box">
             <input className="input-style" placeholder="Buscar por título, autor o temática" type="text" onChange={this.props.onChangeText} value={this.props.filterText} />

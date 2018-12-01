@@ -7,15 +7,26 @@ class Favourites extends Component {
     constructor() {
         super();
         this.state = {
-        favourites: [],
-        title: '',
-        author: ''
-        };
-        this.changeTitle = this.changeTitle.bind(this);
-        this.changeAuthor = this.changeAuthor.bind(this);
-        this.updateData = this.updateData.bind(this);
-        // this.resetInput = this.resetInput.bind(this);
-        this.deleteCard = this.deleteCard.bind(this);
+            favourites: [],
+            title: '',
+            author: '',
+            url: ''
+            };
+            this.changeTitle = this.changeTitle.bind(this);
+            this.changeAuthor = this.changeAuthor.bind(this);
+            this.changeUrl = this.changeUrl.bind(this);
+            this.updateData = this.updateData.bind(this);
+            this.deleteCard = this.deleteCard.bind(this);
+      }
+
+      componentWillMount() { //si quieres borrar todo, pone removeItem en cambio de getItem a lado de localStorage
+        localStorage.getItem('favourites') && this.setState({
+            favourites: JSON.parse(localStorage.getItem('favourites'))
+        })
+      }
+    
+      componentWillUpdate(nextProps, nextState){
+        localStorage.setItem('favourites', JSON.stringify(nextState.favourites));
       }
 
       changeTitle(event) {
@@ -32,6 +43,13 @@ class Favourites extends Component {
         });
     }
 
+    changeUrl(event) {
+        const {author} = this.state;
+        this.setState({
+        url: event.target.value
+        });
+    }
+
     resetTitle(){
         this.setState({
             title: ''
@@ -44,41 +62,50 @@ class Favourites extends Component {
           });
       }
 
+      resetUrl(){
+        this.setState({
+            url: ''
+          });
+      }
+
     updateData(){
-        const {title,  author, favourites} = this.state;
+        const {title,  author, favourites, url} = this.state;
         const newTitle = title;
         const newAuthor = author;
+        const newUrl = url;
         
         if(newTitle !== '' && newAuthor !== '') {
+            const bookUrl = newUrl === '' ? 'https://educacion2.com/wp-content/uploads/El-mejor-libro.jpg' : newUrl;
             this.setState({
-                favourites: favourites.concat({newTitle, newAuthor})
+                favourites: favourites.concat({newTitle, newAuthor, bookUrl})
             });
         }
         console.log('favourites', this.state.favourites);
         this.resetTitle();
         this.resetAuthor();
+        this.resetUrl();
     }
 
     deleteCard(title) {
-    const filteredArray = this.state.favourites.filter(favourite => favourite.newTitle !== title)
-    this.setState({favourites: filteredArray});
-    console.log('filteredArray', this.state.favourites)
+        const filteredArray = this.state.favourites.filter(favourite => favourite.newTitle !== title)
+        this.setState({favourites: filteredArray});
+        console.log('filteredArray', this.state.favourites)
     }
 
     renderFavourites() {
         if (this.state.favourites.length > 0) {
             var cards = this.state.favourites.map((card, index) => {
                 return (
-                        <div key={index} className="col-xs-12 col-sm-6 col-lg-4 mt-3 mb-3 mt-sm-5 mb-sm-5">
-                            <FavouritesCard title={card.newTitle} author={card.author} onClose={() => this.deleteCard(card.newTitle)} />
-                </div>
+                    <div key={index} className="col-xs-12 col-sm-6 col-lg-4 mt-3 mb-3 mt-sm-5 mb-sm-5">
+                        <FavouritesCard title={card.newTitle} author={card.newAuthor} url={card.bookUrl} onClose={() => this.deleteCard(card.newTitle)} />
+                    </div>
                 );
             });
             return (
                 <div className="container">
                     <div className="row">
-                {cards} 
-                </div>
+                        {cards} 
+                    </div>
                 </div>
             );
         }
@@ -86,62 +113,27 @@ class Favourites extends Component {
         
 
 render() {
-    
-return (
-    <div>
-    <div className={'form-container'}>
-    <input className="input-favourites-style" placeholder="título" type="text" onChange={this.changeTitle} value={this.state.title} />
-    <input className="input-favourites-style" placeholder="autor" type="text" onChange={this.changeAuthor} value={this.state.author} />
-    <button onClick={this.updateData}>Ya</button>
-    </div>
-    {this.renderFavourites()}
-    
-    </div>
-);
-}
+    return (
+        <div>
+            <div className='formbox-container'>
+                <p id="fav-page-title">{this.props.title}</p>
+                <div className="form-box">
+                    <input className="fav-input-style" placeholder="Título" type="text" onChange={this.changeTitle} value={this.state.title} />
+                    <input className="fav-input-style" placeholder="Autor" type="text" onChange={this.changeAuthor} value={this.state.author} />
+                    <input className="fav-input-style" placeholder="Url de imagen" type="text" onChange={this.changeUrl} value={this.state.url} />
+                    <button onClick={this.updateData}>¡Listo!</button>
+                </div>
+            </div>
+            <div className="container">
+                <div className="row">
+                    {this.renderFavourites()}
+                </div>
+            </div>
+        </div>
+        );
+    }
 }
 
 export default Favourites;
-
-// =============================
-
-// import ContentEditable from 'react-contenteditable';
-// import React, { Component } from 'react';
-
-
-// class Favourites extends Component {
-// constructor() {
-// super()
-// this.state = {html: "<b>Hello <i>World</i></b>"};
-// };
-
-// handleChange = evt => {
-// this.setState({html: evt.target.value});
-// };
-
-
-
-// render() {
-
-
-//     return (
-//         <div>
-//         <ContentEditable
-//         html={this.state.html} // innerHTML of the editable div
-//         disabled={false}       // use true to disable edition
-//         onChange={this.handleChange} // handle innerHTML change
-//         tagName='article' // Use a custom HTML tag (uses a div by default)
-//             /> 
-    
-
-//         </div>
-//     );
-    
-    
-// };
-// }
-
-// export default Favourites;
-
 
 

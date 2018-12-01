@@ -3,6 +3,7 @@ import SinglePage from './components/SinglePage/SinglePage';
 import Favourites from './components/Favourites/Favourites';
 import todosObject from '../books.json';
 import { Link, Route, Switch } from 'react-router-dom';
+import './App.css';
 
 class App extends Component {
   constructor() {
@@ -15,8 +16,6 @@ class App extends Component {
     };
     this.handleChangeText = this.handleChangeText.bind(this);
     this.resetInput = this.resetInput.bind(this);
-    this.renderSinglePage = this.renderSinglePage.bind(this);
-    this.renderSinglePageOnDelay = this.renderSinglePageOnDelay.bind(this);
   }
 
   componentDidMount() {
@@ -35,17 +34,12 @@ class App extends Component {
     booksArray.push(allBooks[0]);
     booksFiccionArray.push(allBooks[0].ficcion);
     booksNoFiccionArray.push(allBooks[0].noFiccion);
-    console.log('booksArray', booksArray);
-    console.log('booksFiccionArray', booksFiccionArray);
 
     this.setState({
       books: books.concat(booksArray),
-      ficcionBooks: ficcionBooks.concat(booksFiccionArray),  //Aqui la clave!!!
+      ficcionBooks: ficcionBooks.concat(booksFiccionArray), 
       noFiccionBooks: noFiccionBooks.concat(booksNoFiccionArray)
     });
-
-    console.log('this.state.ficcionBooks', this.state.ficcionBooks);
-    console.log('books actuslizado', this.state.books);
   }
 
   handleChangeText(event) {
@@ -57,47 +51,31 @@ class App extends Component {
   }
 
   resetInput(event) {
-    const {filterText} = this.state;
       this.setState({
         filterText: ''
       });
   }
 
-  renderSinglePage(){
-    const ficcionBooksTitle = 'Los libros más vendidos de ficción';
-    const ficcionBooksText = 'Descubre cuáles son los libros más vendidos de este año con este ránking de bestsellers. Los libros más leídos de romántica, thriller, juvenil, novelas, libros de no ficción y mucho más lo encontrarás aquí.';
-
-    const noFiccionBooksTitle = 'Los libros más vendidos de no ficción';
-    const noFiccionBooksText = 'Ensayos, biografías, libros de historia, empresa, bienestar... Descubre cuáles son los bestsellers de los libros de no ficción.';
-    console.log(this.state.ficcionBooks);
-    return (
-      <div>
-          <SinglePage spArray={this.state.ficcionBooks} title={ficcionBooksTitle} text={ficcionBooksText} filterText={this.state.filterText} onChangeText={this.handleChangeText} />
-      </div>
-    )
-  }
-
-  renderSinglePageOnDelay() {
-    return setTimeout(this.renderSinglePage.bind(this), 2000)
-  }
-
   render() {
-    const renders = this.renderSinglePageOnDelay();
     const ficcionBooksTitle = 'Los libros más vendidos de ficción';
     const ficcionBooksText = 'Descubre cuáles son los libros más vendidos de este año con este ránking de bestsellers. Los libros más leídos de romántica, thriller, juvenil, novelas, libros de no ficción y mucho más lo encontrarás aquí.';
 
     const noFiccionBooksTitle = 'Los libros más vendidos de no ficción';
     const noFiccionBooksText = 'Ensayos, biografías, libros de historia, empresa, bienestar... Descubre cuáles son los bestsellers de los libros de no ficción.';
+
+    const favouritesTitle = 'Crea una lista de tus libros favoritos!';
     
     return (
       <div className="App">
-        <button onClick={this.resetInput} className={'button-style'}>  <Link to='/' style={{ textDecoration: 'none', color: 'black', textAlign: 'center'}} > Libros de ficción </Link></button>
-        <button onClick={this.resetInput} className={'button-style'}> <Link to='/noFiccion' style={{ textDecoration: 'none', color: 'black', textAlign: 'center'}}>Libros de no ficción</Link></button>
-        <button onClick={this.resetInput} className={'button-style'}> <Link to='/favourites' style={{ textDecoration: 'none', color: 'black', textAlign: 'center'}}>Libros favoritos</Link></button>
+        <div className="buttons-container">
+          <button onClick={this.resetInput} className={'button-style'}>  <Link to='/' style={{ textDecoration: 'none', color: 'black', textAlign: 'center'}} > Libros de ficción </Link></button>
+          <button onClick={this.resetInput} className={'button-style'}> <Link to='/noFiccion' style={{ textDecoration: 'none', color: 'black', textAlign: 'center'}}>Libros de no ficción</Link></button>
+          <button onClick={this.resetInput} className={'button-style'}> <Link to='/favourites' style={{ textDecoration: 'none', color: 'black', textAlign: 'center'}}>Libros favoritos</Link></button>
+        </div>
         <Switch>
-          <Route exact path='/' render={(props) => <SinglePage {...props} spArray={this.state.ficcionBooks} title={ficcionBooksTitle} text={ficcionBooksText} filterText={this.state.filterText} onChangeText={this.handleChangeText} />}/>
-          <Route exact path='/noFiccion' render={(props) => <SinglePage {...props} spArray={this.state.noFiccionBooks} title={noFiccionBooksTitle} text={noFiccionBooksText} filterText={this.state.filterText} onChangeText={this.handleChangeText} />}/>
-          <Route exact path='/favourites' render={(props) => <Favourites {...props} />}/>
+          <Route exact path='/' render={(props) => <SinglePage {...props} backgroundImage='ficcion-background-image' spArray={this.state.ficcionBooks} title={ficcionBooksTitle} text={ficcionBooksText} filterText={this.state.filterText} onChangeText={this.handleChangeText} />}/>
+          <Route exact path='/noFiccion' render={(props) => <SinglePage backgroundImage='no-ficcion-background-image'  {...props} spArray={this.state.noFiccionBooks} title={noFiccionBooksTitle} text={noFiccionBooksText} filterText={this.state.filterText} onChangeText={this.handleChangeText} />}/>
+          <Route exact path='/favourites' render={(props) => <Favourites {...props} title={favouritesTitle}  />}/>
         </Switch>
       </div>
     )
