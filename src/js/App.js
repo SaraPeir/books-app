@@ -74,8 +74,8 @@ class App extends Component {
         </div>
         <Switch>
           <Route exact path='/' render={(props) => <SinglePage {...props} backgroundImage='ficcion-background-image' spArray={this.state.ficcionBooks} title={ficcionBooksTitle} text={ficcionBooksText} filterText={this.state.filterText} onChangeText={this.handleChangeText} />}/>
-          <Route exact path='/noFiccion' render={(props) => <SinglePage backgroundImage='no-ficcion-background-image'  {...props} spArray={this.state.noFiccionBooks} title={noFiccionBooksTitle} text={noFiccionBooksText} filterText={this.state.filterText} onChangeText={this.handleChangeText} />}/>
-          <Route exact path='/favourites' render={(props) => <Favourites {...props} title={favouritesTitle}  />}/>
+          <Route path='/noFiccion' render={(props) => <SinglePage backgroundImage='no-ficcion-background-image'  {...props} spArray={this.state.noFiccionBooks} title={noFiccionBooksTitle} text={noFiccionBooksText} filterText={this.state.filterText} onChangeText={this.handleChangeText} />}/>
+          <Route path='/favourites' render={(props) => <Favourites {...props} title={favouritesTitle}  />}/>
         </Switch>
       </div>
     )
