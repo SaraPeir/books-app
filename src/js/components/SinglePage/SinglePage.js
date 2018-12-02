@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './SinglePage.css';
 import BookCard from '../BookCard/BookCard';
-import ModalBS from '../Modal/Modal';
 
 class SinglePage extends Component {
   
@@ -36,7 +35,6 @@ class SinglePage extends Component {
         return mapped;
       }
     }
-
 
   render() {
     return (
