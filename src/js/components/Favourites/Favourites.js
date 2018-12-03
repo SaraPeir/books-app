@@ -10,7 +10,8 @@ class Favourites extends Component {
             favourites: [],
             title: '',
             author: '',
-            url: ''
+            url: '',
+            inputStyle: ''
             };
             this.changeTitle = this.changeTitle.bind(this);
             this.changeAuthor = this.changeAuthor.bind(this);
@@ -77,8 +78,14 @@ class Favourites extends Component {
         if(newTitle !== '' && newAuthor !== '') {
             const bookUrl = newUrl === '' ? 'https://educacion2.com/wp-content/uploads/El-mejor-libro.jpg' : newUrl;
             this.setState({
-                favourites: favourites.concat({newTitle, newAuthor, bookUrl})
+                favourites: favourites.concat({newTitle, newAuthor, bookUrl}),
+                inputStyle: ''
             });
+        } else {
+            this.setState({
+                inputStyle: 'fav-input-border-warning'
+            });
+            
         }
         console.log('favourites', this.state.favourites);
         this.resetTitle();
@@ -118,10 +125,10 @@ render() {
             <div className='formbox-container'>
                 <p id="fav-page-title">{this.props.title}</p>
                 <div className="form-box">
-                    <input className="fav-input-style" placeholder="Título" type="text" onChange={this.changeTitle} value={this.state.title} />
-                    <input className="fav-input-style" placeholder="Autor" type="text" onChange={this.changeAuthor} value={this.state.author} />
-                    <input className="fav-input-style" placeholder="Url de imagen" type="text" onChange={this.changeUrl} value={this.state.url} />
-                    <button onClick={this.updateData}>¡Listo!</button>
+                    <input className={`fav-input-style ${this.state.inputStyle}`} placeholder="Título" type="text" onChange={this.changeTitle} value={this.state.title} />
+                    <input className={`fav-input-style ${this.state.inputStyle}`} placeholder="Autor" type="text" onChange={this.changeAuthor} value={this.state.author} />
+                    <input id="fav-url-input-style"  className="fav-input-style" placeholder="Url de imagen" type="text" onChange={this.changeUrl} value={this.state.url} />
+                    <button className="fav-button" onClick={this.updateData}>¡Listo!</button>
                 </div>
             </div>
             <div className="container">

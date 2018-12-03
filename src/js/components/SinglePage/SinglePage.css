@@ -59,12 +59,12 @@
 }
 
 @media screen and (min-width: 1024px) {
-.input-style {
-    margin-bottom: 5%;
+    .input-style {
+        margin-bottom: 5%;
+        }
+    .search-box {
+        height: 300px;
     }
-.search-box {
-    height: 300px;
-}
 }
 
 @media screen and (min-width: 1800px) {

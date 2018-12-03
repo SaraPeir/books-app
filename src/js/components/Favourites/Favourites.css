@@ -47,6 +47,26 @@
     margin: 0 2%;
 }
 
+#fav-url-input-style {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    font-size: 18px;
+    margin-top: 4%;
+}
+
+.fav-input-border-warning {
+    border: 2px solid red;
+}
+
+.fav-button {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+
 @media screen and (min-width: 768px) {
     #fav-page-title {
         font-size: 30px;
