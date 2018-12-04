@@ -28,7 +28,7 @@ class ModalBS extends Component {
           <ModalBody className={'container centering'}>
           <div className={'row'}>
             <div className={'col-12'}>
-              <img src={this.props.url} alt={`${this.props.title} image`} />
+              <img className="img-style" src={this.props.url} alt={`${this.props.title} image`} />
             </div>
             <div className={'col-12  p-5'}>
               <p className={'special-typo'}>{this.props.introductionText}</p>

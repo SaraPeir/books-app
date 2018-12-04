@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Favourites.css';
 import FavouritesCard from '../FavouritesCards/FavouritesCards';
+import Menu from '../Menu/Menu';
 
 class Favourites extends Component {
 
@@ -123,6 +124,7 @@ render() {
     return (
         <div>
             <div className='formbox-container'>
+            <Menu />
                 <p id="fav-page-title">{this.props.title}</p>
                 <div className="form-box">
                     <input className={`fav-input-style ${this.state.inputStyle}`} placeholder="Título" type="text" onChange={this.changeTitle} value={this.state.title} />

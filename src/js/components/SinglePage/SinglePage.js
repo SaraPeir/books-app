@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './SinglePage.css';
 import BookCard from '../BookCard/BookCard';
+import Menu from '../Menu/Menu';
 
 class SinglePage extends Component {
   
@@ -39,9 +40,14 @@ class SinglePage extends Component {
   render() {
     return (
       <div>
+      
         <div className={`${this.props.backgroundImage} searchbox-container`}>
+        <Menu />
+        
           <p id="page-title">{this.props.title}</p>
+          
           <div className="search-box">
+          
             <input className="input-style" placeholder="Buscar por título, autor o temática" type="text" onChange={this.props.onChangeText} value={this.props.filterText} />
           </div>
           <p id="page-text">{this.props.text}</p>

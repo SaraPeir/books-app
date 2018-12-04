@@ -8,7 +8,7 @@ class BookCard extends Component {
     return (
       <div>
         <div className="card-box" onClick={this.props.openModal} isOpen={this.props.isOpen} >
-          <img src={this.props.url} alt={`${this.props.title} image`} />
+          <img className="card-box-img" src={this.props.url} alt={`${this.props.title} image`} />
           <p id="strong">{this.props.title}</p>
           <p>{this.props.author}</p>
           <p id="tag">{this.props.type}</p>

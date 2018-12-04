@@ -10,7 +10,7 @@ class FavouritesCards extends Component {
     return (
       <div>
         <div className="card-box" >
-          <img src={this.props.url} alt={`${this.props.title} image`} />
+          <img className="card-box-img" src={this.props.url} alt={`${this.props.title} image`} />
           <p id="strong">{this.props.title}</p>
           <p>{this.props.author}</p>
           <button type="button" className="close" onClick={this.props.onClose}>&times;</button>

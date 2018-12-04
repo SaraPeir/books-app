@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SinglePage from './components/SinglePage/SinglePage';
 import Favourites from './components/Favourites/Favourites';
+import Menu from './components/Menu/Menu';
 import todosObject from '../books.json';
 import { Link, Route, Switch } from 'react-router-dom';
 import './App.css';
@@ -67,12 +68,15 @@ class App extends Component {
     
     return (
       <div className="App">
+      
         <div className="buttons-container">
-          <button onClick={this.resetInput} className={'button-style'}>  <Link to='/' style={{ textDecoration: 'none', color: 'black', textAlign: 'center'}} > Libros de ficción </Link></button>
-          <button onClick={this.resetInput} className={'button-style'}> <Link to='/noFiccion' style={{ textDecoration: 'none', color: 'black', textAlign: 'center'}}>Libros de no ficción</Link></button>
-          <button onClick={this.resetInput} className={'button-style'}> <Link to='/favourites' style={{ textDecoration: 'none', color: 'black', textAlign: 'center'}}>Libros favoritos</Link></button>
+          <button onClick={this.resetInput}>  <Link to='/' style={{ textDecoration: 'none', color: 'black', textAlign: 'center'}} > Libros de ficción </Link></button>
+          <button onClick={this.resetInput}> <Link to='/noFiccion' style={{ textDecoration: 'none', color: 'black', textAlign: 'center'}}>Libros de no ficción</Link></button>
+          <button onClick={this.resetInput}> <Link to='/favourites' style={{ textDecoration: 'none', color: 'black', textAlign: 'center'}}>Libros favoritos</Link></button>
+          
         </div>
         <Switch>
+        
           <Route exact path='/' render={(props) => <SinglePage {...props} backgroundImage='ficcion-background-image' spArray={this.state.ficcionBooks} title={ficcionBooksTitle} text={ficcionBooksText} filterText={this.state.filterText} onChangeText={this.handleChangeText} />}/>
           <Route path='/noFiccion' render={(props) => <SinglePage backgroundImage='no-ficcion-background-image'  {...props} spArray={this.state.noFiccionBooks} title={noFiccionBooksTitle} text={noFiccionBooksText} filterText={this.state.filterText} onChangeText={this.handleChangeText} />}/>
           <Route path='/favourites' render={(props) => <Favourites {...props} title={favouritesTitle}  />}/>
